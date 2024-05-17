@@ -64,35 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Accounts.cs">
-      <DependentUpon>BankModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="BankModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BankModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="BankModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="BankModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BankModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Cards.cs">
-      <DependentUpon>BankModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Roles.cs">
-      <DependentUpon>BankModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions.cs">
-      <DependentUpon>BankModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Users.cs">
-      <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -156,21 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="public\3246138e1c4456f395dfad71f94aa1e4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BankModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BankModel.Context.cs</LastGenOutput>
-      <DependentUpon>BankModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="BankModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BankModel.edmx</DependentUpon>
-      <LastGenOutput>BankModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

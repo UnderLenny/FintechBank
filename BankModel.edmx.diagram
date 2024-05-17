@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="37b058de59544d238bbf17cfaa95ca3f" Name="Diagram1">
+        <EntityTypeShape EntityType="FintechBankModel.Accounts" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Cards" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Roles" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Transactions" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Users" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="FintechBankModel.FK__Accounts__UserID__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Cards__AccountID__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Transacti__Accou__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.UserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
