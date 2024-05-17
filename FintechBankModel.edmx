@@ -254,7 +254,7 @@
           <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="FintechBankEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FintechBankEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" />
           <EntitySet Name="Cards" EntityType="Self.Cards" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
@@ -282,7 +282,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище FintechBankModelContainer" CdmEntityContainer="FintechBankEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FintechBankModelContainer" CdmEntityContainer="FintechBankEntities1">
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="FintechBankModel.Accounts">
               <MappingFragment StoreEntitySet="Accounts">

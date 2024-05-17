@@ -13,11 +13,10 @@ namespace FintechBank
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FintechBankEntities : DbContext
+    public partial class FintechBankEntities1 : DbContext
     {
-        
-        public FintechBankEntities()
-            : base("name=FintechBankEntities")
+        public FintechBankEntities1()
+            : base("name=FintechBankEntities1")
         {
         }
     
