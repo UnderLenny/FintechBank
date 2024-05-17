@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace FintechBank
 {
     /// <summary>
-    /// Логика взаимодействия для auth.xaml
+    /// Логика взаимодействия для UserDashboardWindow.xaml
     /// </summary>
-    public partial class auth : Window
+    public partial class UserDashboardWindow : Window
     {
-        public auth()
+        public UserDashboardWindow()
         {
             InitializeComponent();
-        }
-
-        private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void firstNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
