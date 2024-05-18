@@ -7,31 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FintechBank
+namespace FintechBank.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Accounts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Accounts()
         {
-            this.Accounts = new HashSet<Accounts>();
-            this.Roles = new HashSet<Roles>();
+            this.Cards = new HashSet<Cards>();
+            this.Transactions = new HashSet<Transactions>();
         }
     
-        public int UserID { get; set; }
-        public string Username { get; set; }
-        public string PasswordHash { get; set; }
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int AccountID { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public string AccountNumber { get; set; }
+        public Nullable<decimal> Balance { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
     
+        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Accounts> Accounts { get; set; }
+        public virtual ICollection<Cards> Cards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Roles> Roles { get; set; }
+        public virtual ICollection<Transactions> Transactions { get; set; }
     }
 }

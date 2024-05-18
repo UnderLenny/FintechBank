@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FintechBank
+namespace FintechBank.Models
 {
     using System;
     using System.Data.Entity;

@@ -64,15 +64,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BankModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankModel.Context.tt</DependentUpon>
+    <Compile Include="Models\Accounts.cs">
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BankModel.Designer.cs">
+    <Compile Include="Models\Cards.cs">
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\FintechBankModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BankModel.edmx</DependentUpon>
+      <DependentUpon>FintechBankModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FintechBankModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FintechBankModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FintechBankModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roles.cs">
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transactions.cs">
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -118,12 +139,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="BankModel.edmx">
+    <EntityDeploy Include="Models\FintechBankModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BankModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>FintechBankModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BankModel.edmx.diagram">
-      <DependentUpon>BankModel.edmx</DependentUpon>
+    <None Include="Models\FintechBankModel.edmx.diagram">
+      <DependentUpon>FintechBankModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -135,7 +156,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="public\3246138e1c4456f395dfad71f94aa1e4.png" />
+    <Content Include="Models\FintechBankModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FintechBankModel.edmx</DependentUpon>
+      <LastGenOutput>FintechBankModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FintechBankModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FintechBankModel.edmx</DependentUpon>
+      <LastGenOutput>FintechBankModel.cs</LastGenOutput>
+    </Content>
+    <Resource Include="public\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
