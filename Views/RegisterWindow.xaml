@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FintechBank"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="600" Width="450"
+        Title="RegisterWindow" Height="600" Width="500"
         WindowStartupLocation="CenterScreen"
         Background="#FFFFFF" FontFamily="Segoe UI">
 
@@ -18,20 +18,20 @@
         <!-- Header Section -->
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,10">
             <Image Source="../Resources/logo.png" Width="158" Height="126"/>
-            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF3F4949"><Run Language="ru-ru" Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
-            <TextBlock Text="Создайте аккаунт, чтобы начать" FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949"/>
+            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF3F4949" FontFamily="Cascadia Code"><Run Language="ru-ru" Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
+            <TextBlock Text="Создайте аккаунт, чтобы начать" FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949" FontFamily="Copperplate Gothic Bold"/>
         </StackPanel>
 
         <!-- Registration Form Section -->
         <StackPanel Grid.Row="1" Margin="74,0,65,20">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Margin="0,10,10,0">
-                    <TextBlock Text="Имя" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
+                    <TextBlock Text="Имя" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949" />
                     <TextBox x:Name="FirstNameTextBox" Height="30" FontSize="16" Width="143"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0">
                     <TextBlock Text="Фамилия" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
-                    <TextBox x:Name="LastNameTextBox" Height="30" FontSize="16" Width="141"/>
+                    <TextBox x:Name="LastNameTextBox"  Height="30" FontSize="16" Width="141"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">

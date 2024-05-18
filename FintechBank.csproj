@@ -111,6 +111,18 @@
     <Compile Include="Views\UserDashboardWindow.xaml.cs">
       <DependentUpon>UserDashboardWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewsPages\DepositsPage.xaml.cs">
+      <DependentUpon>DepositsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewsPages\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewsPages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewsPages\WalletPage.xaml.cs">
+      <DependentUpon>WalletPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,6 +132,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserDashboardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewsPages\DepositsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewsPages\HistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewsPages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewsPages\WalletPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +197,8 @@
       <DependentUpon>FintechBankModel.edmx</DependentUpon>
       <LastGenOutput>FintechBankModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\Mir-logo.svg" />
+    <Resource Include="Resources\logo2.png" />
     <Resource Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>

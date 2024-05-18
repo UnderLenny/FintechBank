@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FintechBank"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="450"
+        Title="MainWindow" Height="500" Width="500"
         WindowStartupLocation="CenterScreen"
         Background="#FFFFFF" FontFamily="Segoe UI">
 
@@ -20,10 +20,10 @@
         </Grid.RowDefinitions>
 
         <!-- Header Section -->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="29,20,0,10" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="37,20,0,10" Grid.ColumnSpan="2">
             <Image Source="../Resources/logo.png" Width="158" Height="126"/>
-            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF3F4949"><Run Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
-            <TextBlock FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949"><Run Text="Авторизуйтесь"/><Run Text=", "/><Run Text="чтобы продол"/><Run Language="ru-ru" Text="жить"/></TextBlock>
+            <TextBlock FontSize="24" FontWeight="Bold" Foreground="#FF3F4949" FontFamily="Cascadia Code" Width="426"><Run Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
+            <TextBlock FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949" FontFamily="Cascadia Code"><Run Text="Авторизуйтесь"/><Run Text=", "/><Run Text="чтобы продол"/><Run Language="ru-ru" Text="жить"/></TextBlock>
         </StackPanel>
 
         <!-- Login Form Section -->
@@ -37,9 +37,9 @@
                 <PasswordBox x:Name="PasswordBox" Height="30" FontSize="16"/>
             </StackPanel>
 
-            <Button Content="Войти" Height="40" Background="#FF3F4949" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="LoginButton_Click"/>
+            <Button Content="Войти" Height="40" Background="#FF3F4949" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="LoginButton_Click" FontFamily="Cascadia Code"/>
 
-            <TextBlock Text="Нет аккаунта? Создайте его!" FontSize="14" FontWeight="Bold" Foreground="#FF3F4949" HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" MouseDown="RegisterText_MouseDown"/>
+            <TextBlock Text="Нет аккаунта? Создайте его!" FontSize="14" FontWeight="Bold" Foreground="#FF3F4949" HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" MouseDown="RegisterText_MouseDown" FontFamily="Cascadia Code"/>
         </StackPanel>
     </Grid>
 </Window>
