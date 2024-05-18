@@ -31,7 +31,7 @@ namespace FintechBank
                 if (Register(firstName, lastName, email, passwordHash))
                 {
                     MessageBox.Show("Registration successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    var loginWindow = new MainWindow();
+                    var loginWindow = new LoginWindow();
                     loginWindow.Show();
                     this.Close();
                 }
@@ -102,7 +102,7 @@ namespace FintechBank
 
         private void LoginText_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var loginWindow = new MainWindow();
+            var loginWindow = new LoginWindow();
             loginWindow.Show();
             this.Close();
         }

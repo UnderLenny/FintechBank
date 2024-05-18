@@ -95,8 +95,8 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>FintechBankModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
@@ -105,10 +105,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserDashboardWindow.xaml.cs">
+    <Compile Include="Views\UserDashboardWindow.xaml.cs">
       <DependentUpon>UserDashboardWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,7 +116,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserDashboardWindow.xaml">
+    <Page Include="Views\UserDashboardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
