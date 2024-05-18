@@ -17,39 +17,39 @@
 
         <!-- Header Section -->
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,10">
-            <Image Source="../public/logo.png" Width="158" Height="126"/>
-            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"><Run Language="ru-ru" Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
-            <TextBlock Text="Создайте аккаунт, чтобы начать" FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+            <Image Source="../Resources/logo.png" Width="158" Height="126"/>
+            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF3F4949"><Run Language="ru-ru" Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
+            <TextBlock Text="Создайте аккаунт, чтобы начать" FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949"/>
         </StackPanel>
 
         <!-- Registration Form Section -->
         <StackPanel Grid.Row="1" Margin="74,0,65,20">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Margin="0,10,10,0">
-                    <TextBlock Text="Имя" FontSize="12" FontWeight="Bold"/>
+                    <TextBlock Text="Имя" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                     <TextBox x:Name="FirstNameTextBox" Height="30" FontSize="16" Width="143"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0">
-                    <TextBlock Text="Фамилия" FontSize="12" FontWeight="Bold"/>
+                    <TextBlock Text="Фамилия" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                     <TextBox x:Name="LastNameTextBox" Height="30" FontSize="16" Width="141"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
-                <TextBlock Text="Email" FontSize="12" FontWeight="Bold"/>
+                <TextBlock Text="Email" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                 <TextBox x:Name="EmailTextBox" Height="30" FontSize="16"/>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
-                <TextBlock Text="Пароль" FontSize="12" FontWeight="Bold"/>
+                <TextBlock Text="Пароль" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                 <PasswordBox x:Name="PasswordBox" Height="30" FontSize="16"/>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
-                <TextBlock Text="Подтвердите пароль" FontSize="12" FontWeight="Bold"/>
+                <TextBlock Text="Подтвердите пароль" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                 <PasswordBox x:Name="ConfirmPasswordBox" Height="30" FontSize="16" />
             </StackPanel>
 
-            <Button Content="Создать аккаунт" Height="40" Background="#000000" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="RegisterButton_Click"/>
+            <Button Content="Создать аккаунт" Height="40" Background="#FF3F4949" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="RegisterButton_Click"/>
 
-            <TextBlock Text="Уже есть аккаунт? Водите!" FontSize="14" FontWeight="Bold" Foreground="Gray"  HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" MouseDown="LoginText_MouseDown"/>
+            <TextBlock Text="Уже есть аккаунт? Водите!" FontSize="14" FontWeight="Bold" Foreground="#FF3F4949"  HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" MouseDown="LoginText_MouseDown"/>
         </StackPanel>
     </Grid>
 </Window>

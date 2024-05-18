@@ -21,25 +21,25 @@
 
         <!-- Header Section -->
         <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="29,20,0,10" Grid.ColumnSpan="2">
-            <Image Source="../public/logo.png" Width="158" Height="126"/>
-            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"><Run Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
-            <TextBlock FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0"><Run Text="Авторизуйтесь"/><Run Text=", "/><Run Text="чтобы продол"/><Run Language="ru-ru" Text="жить"/></TextBlock>
+            <Image Source="../Resources/logo.png" Width="158" Height="126"/>
+            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF3F4949"><Run Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
+            <TextBlock FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949"><Run Text="Авторизуйтесь"/><Run Text=", "/><Run Text="чтобы продол"/><Run Language="ru-ru" Text="жить"/></TextBlock>
         </StackPanel>
 
         <!-- Login Form Section -->
         <StackPanel Grid.Row="1" Margin="40,0,40,20" Grid.ColumnSpan="2">
             <StackPanel Margin="0,10,0,0">
-                <TextBlock Text="Email" FontSize="12" FontWeight="Bold"/>
+                <TextBlock Text="Email" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                 <TextBox x:Name="EmailTextBox" Height="30" FontSize="16"/>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
-                <TextBlock Text="Пароль" FontSize="12" FontWeight="Bold"/>
+                <TextBlock Text="Пароль" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                 <PasswordBox x:Name="PasswordBox" Height="30" FontSize="16"/>
             </StackPanel>
 
-            <Button Content="Войти" Height="40" Background="#000000" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="LoginButton_Click"/>
+            <Button Content="Войти" Height="40" Background="#FF3F4949" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="LoginButton_Click"/>
 
-            <TextBlock Text="Нет аккаунта? Создайте его!" FontSize="14" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" MouseDown="RegisterText_MouseDown"/>
+            <TextBlock Text="Нет аккаунта? Создайте его!" FontSize="14" FontWeight="Bold" Foreground="#FF3F4949" HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" MouseDown="RegisterText_MouseDown"/>
         </StackPanel>
     </Grid>
 </Window>
