@@ -73,7 +73,7 @@ namespace FintechBank.Views
             WalletButton.Style = (Style)FindResource("menuButton");
             PaymentsButton.Style = (Style)FindResource("menuButton");
             SettingsButton.Style = (Style)FindResource("menuButton");
-            MainFrame.Navigate(new HistoryPage());
+            MainFrame.Navigate(new HistoryPage(_currentUserId));
         }
 
         private void PaymentsButton_Click(object sender, RoutedEventArgs e)
@@ -126,7 +126,9 @@ namespace FintechBank.Views
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
         }
     }
 }

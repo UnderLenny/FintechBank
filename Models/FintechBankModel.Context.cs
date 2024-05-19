@@ -19,12 +19,22 @@ namespace FintechBank.Models
             : base("name=FintechBankEntities2")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<Transactions>()
+                .HasRequired(t => t.Accounts)
+                .WithMany(a => a.Transactions)
+                .HasForeignKey(t => t.SenderAccountID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Transactions>()
+                .HasRequired(t => t.Accounts1)
+                .WithMany(a => a.Transactions1)
+                .HasForeignKey(t => t.ReceiverAccountID)
+                .WillCascadeOnDelete(false);
         }
-    
+
         public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<Cards> Cards { get; set; }
         public virtual DbSet<CardStatuses> CardStatuses { get; set; }

@@ -4,20 +4,149 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FintechBank.Views.ViewsPages"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="1180"
       Title="HistoryPage">
+    <Page.Resources>
 
+        <Style x:Key="menuButton" TargetType="Button">
+            <Setter Property="Height" Value="47" />
+            <Setter Property="Width" Value="217" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#f0f0f0" />
+            <Setter Property="Margin" Value="0 0 0 0" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0 20 0" BorderThickness="3 0 0 0" BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7f8888" />
+                    <Setter Property="Foreground" Value="#e9e9e9" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0 20 0" BorderThickness="3 0 0 0">
+                                    <Border.BorderBrush>
+                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                            <GradientStop Color="#7f8888" Offset="0" />
+                                            <GradientStop Color="#8bb3b3" Offset="0.5" />
+                                            <GradientStop Color="#c8d4d4" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.BorderBrush>
+                                    <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#3f4949" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+        <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="#3f4949" />
+
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+
+
+        <Style x:Key="TransactionHistoryListViewStyle" TargetType="ListView">
+            <Setter Property="Background" Value="#3f4949" />
+        </Style>
+
+
+        <Style x:Key="buttonIconExpand" TargetType="fa:ImageAwesome">
+            <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Visibility" Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="border" TargetType="Border">
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="#394141" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+
+        <Style x:Key="textLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#fcfcfc" />
+        </Style>
+
+    </Page.Resources>
     <Grid>
-        <ListView Name="TransactionHistoryListView">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding CreatedAt}" Width="120"/>
-                    <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding TransactionTypeName}" Width="100"/>
-                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Amount}" Width="100"/>
-                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="200"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource border}" Margin="21,120,32,0" Grid.ColumnSpan="2" Height="522" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.279"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.745"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <StackPanel Margin="10,0,10,0">
+                <ListView x:Name="TransactionHistoryListView" Height="498" Style="{StaticResource TransactionHistoryListViewStyle}" Width="674" FontFamily="Cascadia Code" FontSize="16" SelectionChanged="TransactionHistoryListView_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Дата" HeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" Width="160">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding CreatedAt}" Style="{StaticResource textLabel}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Отправитель" HeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" Width="165">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding SenderAccountNumber}" Style="{StaticResource textLabel}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Сумма" HeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" Width="140">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Amount}" Style="{StaticResource textLabel}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Описание" HeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" Width="203">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Description}" Style="{StaticResource textLabel}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

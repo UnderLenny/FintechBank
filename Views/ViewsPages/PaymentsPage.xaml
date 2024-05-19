@@ -372,7 +372,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <!-- Панель переводов-->
-            <Border Style="{StaticResource border}" Margin="20 120 20 20">
+            <Border Style="{StaticResource border}" Margin="20,120,20,0" Height="521">
                 <StackPanel Margin="10 88 10 20">
                     <TextBlock Text="Совершить перевод" Foreground="#fcfcfc" TextAlignment="Center" FontSize="34" FontWeight="SemiBold" FontFamily="Cascadia Code"/>
                     <Grid Margin="0 12 0 22">

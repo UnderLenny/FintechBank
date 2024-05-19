@@ -41,7 +41,7 @@ namespace FintechBank.Controllers
                         SenderAccountID = senderAccountId,
                         ReceiverAccountID = receiverAccountId,
                         Amount = amount,
-                        TransactionTypeID = 1, // Пример для перевода
+                        TransactionTypeID = 1, 
                         Description = description,
                         CreatedAt = DateTime.Now
                     };

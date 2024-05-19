@@ -1,28 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using FintechBank.Models;
 
 namespace FintechBank.Views.ViewsPages
 {
-    /// <summary>
-    /// Логика взаимодействия для HistoryPage.xaml
-    /// </summary>
     public partial class HistoryPage : Page
     {
-        public HistoryPage()
+        private readonly int _currentUserId;
+
+        public HistoryPage(int userId)
         {
             InitializeComponent();
+            _currentUserId = userId;
+            LoadTransactionHistoryAsync();
+        }
+
+        private async void LoadTransactionHistoryAsync()
+        {
+            try
+            {
+                using (var context = new FintechBankEntities2())
+                {
+                    var transactions = await context.Transactions
+                        .Include(t => t.Accounts) // Включение аккаунта отправителя
+                        .Where(t => t.Accounts.UserID == _currentUserId || t.Accounts1.UserID == _currentUserId)
+                        .OrderByDescending(t => t.CreatedAt)
+                        .ToListAsync();
+
+                    var transactionHistory = transactions.Select(t => new
+                    {
+                        t.TransactionID,
+                        t.Amount,
+                        t.Description,
+                        t.CreatedAt,
+                        SenderAccountNumber = t.Accounts != null ? t.Accounts.AccountNumber : "N/A"
+                    }).ToList();
+
+                    TransactionHistoryListView.ItemsSource = transactionHistory;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка загрузки истории транзакций: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void TransactionHistoryListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
