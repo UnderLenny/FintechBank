@@ -9,6 +9,15 @@
       Title="HistoryPage">
 
     <Grid>
-        
+        <ListView Name="TransactionHistoryListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding CreatedAt}" Width="120"/>
+                    <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding TransactionTypeName}" Width="100"/>
+                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Amount}" Width="100"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

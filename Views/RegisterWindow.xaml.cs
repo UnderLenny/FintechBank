@@ -32,8 +32,8 @@ namespace FintechBank
                 if (userID != -1)
                 {
                     MessageBox.Show("Registration successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    int accountID = CreateAccount(userID); // сохраняем AccountID
-                    CreateCard(accountID); // передаем AccountID, а не userID
+                    int accountID = CreateAccount(userID); 
+                    CreateCard(accountID); 
                     AssignRole(userID);
                     var loginWindow = new LoginWindow();
                     loginWindow.Show();
@@ -70,7 +70,7 @@ namespace FintechBank
             string accountNumber = "";
             for (int i = 0; i < 10; i++)
             {
-                int digit = random.Next(0, 10); // Генерация случайной цифры от 0 до 9
+                int digit = random.Next(0, 10); 
                 accountNumber += digit.ToString();
             }
             return accountNumber;
@@ -79,13 +79,13 @@ namespace FintechBank
         private string GenerateCardNumber()
         {
             Random random = new Random();
-            string cardNumber = "";
+            StringBuilder cardNumber = new StringBuilder();
             for (int i = 0; i < 16; i++)
             {
-                int digit = random.Next(0, 10); // Генерация случайной цифры от 0 до 9
-                cardNumber += digit.ToString();
+                int digit = random.Next(0, 10);
+                cardNumber.Append(digit);
             }
-            return cardNumber;
+            return cardNumber.ToString();
         }
 
 
@@ -104,10 +104,9 @@ namespace FintechBank
 
                 if (count > 0)
                 {
-                    return -1; // Email уже используется
+                    return -1; 
                 }
 
-                // Вставка нового пользователя
                 string query = "INSERT INTO Users (FirstName, LastName, Email, PasswordHash) OUTPUT INSERTED.UserID VALUES (@FirstName, @LastName, @Email, @PasswordHash);";
                 SqlCommand command = new SqlCommand(query, connection.getConnection());
                 command.Parameters.AddWithValue("@FirstName", firstName);
@@ -137,11 +136,11 @@ namespace FintechBank
                 connection.openConnection();
 
                 decimal initialBalance = 1000;
-                string accountNumber = GenerateAccountNumber(); // Функция для генерации уникального номера счета
+                string accountNumber = GenerateAccountNumber(); 
 
                 string accountQuery = "INSERT INTO Accounts (UserID, AccountNumber, Balance) OUTPUT INSERTED.AccountID VALUES (@UserID, @AccountNumber, @Balance);";
                 SqlCommand accountCommand = new SqlCommand(accountQuery, connection.getConnection());
-                accountCommand.Parameters.AddWithValue("@UserID", userID); // ID пользователя, который только что зарегистрировался
+                accountCommand.Parameters.AddWithValue("@UserID", userID); 
                 accountCommand.Parameters.AddWithValue("@AccountNumber", accountNumber);
                 accountCommand.Parameters.AddWithValue("@Balance", initialBalance);
                 int accountID = (int)accountCommand.ExecuteScalar();
@@ -161,20 +160,20 @@ namespace FintechBank
         }
 
 
-        private void CreateCard(int accountID) // Изменено с userID на accountID
+        private void CreateCard(int accountID) 
         {
             try
             {
                 connection.openConnection();
 
-                string cardNumber = GenerateCardNumber(); // Функция для генерации уникального номера карты
+                string cardNumber = GenerateCardNumber(); 
                 string cardType = "Debit";
-                DateTime expirationDate = DateTime.Now.AddYears(3); // Срок действия карты - 3 года
-                int cardStatusID = 1; // ID статуса "Active"
+                DateTime expirationDate = DateTime.Now.AddYears(3); 
+                int cardStatusID = 1; 
 
                 string cardQuery = "INSERT INTO Cards (AccountID, CardNumber, CardType, ExpirationDate, CardStatusID) VALUES (@AccountID, @CardNumber, @CardType, @ExpirationDate, @CardStatusID);";
                 SqlCommand cardCommand = new SqlCommand(cardQuery, connection.getConnection());
-                cardCommand.Parameters.AddWithValue("@AccountID", accountID); // Изменено с userID на accountID
+                cardCommand.Parameters.AddWithValue("@AccountID", accountID); 
                 cardCommand.Parameters.AddWithValue("@CardNumber", cardNumber);
                 cardCommand.Parameters.AddWithValue("@CardType", cardType);
                 cardCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate);
@@ -198,7 +197,7 @@ namespace FintechBank
             {
                 connection.openConnection();
 
-                int roleID = 2; // ID роли 'User'
+                int roleID = 2; 
 
                 string userRoleQuery = "INSERT INTO UserRoles (UserID, RoleID) VALUES (@UserID, @RoleID);";
                 SqlCommand userRoleCommand = new SqlCommand(userRoleQuery, connection.getConnection());

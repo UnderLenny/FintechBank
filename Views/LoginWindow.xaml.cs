@@ -24,11 +24,11 @@ namespace FintechBank
             string email = EmailTextBox.Text;
             string password = PasswordBox.Password;
 
-            if (Login(email, HashPassword(password)))
+            int currentUserId;
+            if (Login(email, HashPassword(password), out currentUserId))
             {
                 MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                // Здесь можно открыть основное окно приложения
-                var mainAppWindow = new UserDashboardWindow();
+                var mainAppWindow = new UserDashboardWindow(currentUserId); 
                 mainAppWindow.Show();
                 this.Close();
             }
@@ -38,23 +38,31 @@ namespace FintechBank
             }
         }
 
-        private bool Login(string email, string passwordHash)
+        private bool Login(string email, string passwordHash, out int currentUserId)
         {
+            currentUserId = -1; 
+
             try
             {
                 connection.openConnection();
 
-                string query = "SELECT COUNT(*) FROM Users WHERE Email = @Email AND PasswordHash = @PasswordHash;";
+                string query = "SELECT UserID FROM Users WHERE Email = @Email AND PasswordHash = @PasswordHash;";
                 SqlCommand command = new SqlCommand(query, connection.getConnection());
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@PasswordHash", passwordHash);
-                int count = (int)command.ExecuteScalar();
+                object result = command.ExecuteScalar();
 
-                return count > 0;
+                if (result != null && int.TryParse(result.ToString(), out currentUserId))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
-                // Логирование ошибок
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
@@ -63,7 +71,6 @@ namespace FintechBank
                 connection.closeConnection();
             }
         }
-
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

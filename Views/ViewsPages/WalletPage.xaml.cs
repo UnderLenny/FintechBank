@@ -22,6 +22,7 @@ namespace FintechBank.Views.ViewsPages
     {
         public WalletPage()
         {
+
             InitializeComponent();
         }
 

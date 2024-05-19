@@ -15,15 +15,14 @@ namespace FintechBank.Views.ViewsPages
         private Cards _card;
         private Accounts _account;
 
-        public PaymentsPage()
+        public PaymentsPage(int userId)
         {
             InitializeComponent();
             _transactionsController = new TransactionsController();
-            _currentUserId = 1;
+            _currentUserId = userId;
             LoadCardAndAccountFromDatabase();
             var cardNumberParts = SplitCardNumberIntoParts(_card.CardNumber);
 
-            // Привяжите данные к элементам интерфейса
             DataContext = new
             {
                 NumberPart1 = cardNumberParts[0],

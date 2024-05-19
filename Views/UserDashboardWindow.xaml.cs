@@ -20,10 +20,12 @@ namespace FintechBank.Views
     /// </summary>
     public partial class UserDashboardWindow : Window
     {
-        public UserDashboardWindow()
+        private int _currentUserId;
+        public UserDashboardWindow(int currentUserId)
         {
             InitializeComponent();
             MainFrame.Navigate(new WalletPage());
+            _currentUserId = currentUserId;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -65,7 +67,7 @@ namespace FintechBank.Views
             }
             else
             {
-                HistoryButtonArrow.Visibility = Visibility.Hidden; 
+                HistoryButtonArrow.Visibility = Visibility.Hidden;
             }
 
             WalletButton.Style = (Style)FindResource("menuButton");
@@ -85,7 +87,8 @@ namespace FintechBank.Views
                 WalletButtonArrow.Visibility = Visibility.Hidden;
                 HistoryButtonArrow.Visibility = Visibility.Hidden;
                 SettingsButtonArrow.Visibility = Visibility.Hidden;
-            } else
+            }
+            else
             {
                 PaymentsButtonArrow.Visibility = Visibility.Hidden;
             }
@@ -93,7 +96,7 @@ namespace FintechBank.Views
             HistoryButton.Style = (Style)FindResource("menuButton");
             WalletButton.Style = (Style)FindResource("menuButton");
             SettingsButton.Style = (Style)FindResource("menuButton");
-            MainFrame.Navigate(new PaymentsPage());
+            MainFrame.Navigate(new PaymentsPage(_currentUserId));
         }
 
 
@@ -112,7 +115,7 @@ namespace FintechBank.Views
             else
             {
                 SettingsButton.Visibility = Visibility.Hidden;
-                
+
             }
 
             HistoryButton.Style = (Style)FindResource("menuButton");

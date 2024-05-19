@@ -11,8 +11,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="79*"/>
-            <ColumnDefinition Width="371*"/>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="444*"/>
+            <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,14 +21,14 @@
         </Grid.RowDefinitions>
 
         <!-- Header Section -->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="37,20,0,10" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,10" Grid.Column="1" Width="460">
             <Image Source="../Resources/logo.png" Width="158" Height="126"/>
-            <TextBlock FontSize="24" FontWeight="Bold" Foreground="#FF3F4949" FontFamily="Cascadia Code" Width="426"><Run Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
+            <TextBlock FontSize="24" FontWeight="Bold" Foreground="#FF3F4949" FontFamily="Cascadia Code" Width="427"><Run Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
             <TextBlock FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949" FontFamily="Cascadia Code"><Run Text="Авторизуйтесь"/><Run Text=", "/><Run Text="чтобы продол"/><Run Language="ru-ru" Text="жить"/></TextBlock>
         </StackPanel>
 
         <!-- Login Form Section -->
-        <StackPanel Grid.Row="1" Margin="40,0,40,20" Grid.ColumnSpan="2">
+        <StackPanel Margin="3,205,2,20" Grid.Column="1" Grid.RowSpan="2">
             <StackPanel Margin="0,10,0,0">
                 <TextBlock Text="Email" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
                 <TextBox x:Name="EmailTextBox" Height="30" FontSize="16"/>
