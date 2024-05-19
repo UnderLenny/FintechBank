@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Data.SqlClient;
 
 namespace FintechBank.Views.ViewsPages
 {
@@ -12,12 +12,26 @@ namespace FintechBank.Views.ViewsPages
     {
         private readonly TransactionsController _transactionsController;
         private readonly int _currentUserId;
+        private Cards _card;
+        private Accounts _account;
 
         public PaymentsPage()
         {
             InitializeComponent();
             _transactionsController = new TransactionsController();
-            _currentUserId = 1; // Замените на ID текущего пользователя после авторизации
+            _currentUserId = 1;
+            LoadCardAndAccountFromDatabase();
+            var cardNumberParts = SplitCardNumberIntoParts(_card.CardNumber);
+
+            // Привяжите данные к элементам интерфейса
+            DataContext = new
+            {
+                NumberPart1 = cardNumberParts[0],
+                NumberPart2 = cardNumberParts[1],
+                NumberPart3 = cardNumberParts[2],
+                NumberPart4 = cardNumberParts[3],
+                Balance = _account.Balance
+            };
         }
 
         private async void SendButton_Click(object sender, RoutedEventArgs e)
@@ -32,7 +46,6 @@ namespace FintechBank.Views.ViewsPages
 
             try
             {
-                // Найти счет получателя по номеру карты
                 using (var context = new FintechBankEntities2())
                 {
                     var receiverAccount = context.Cards
@@ -72,6 +85,49 @@ namespace FintechBank.Views.ViewsPages
             {
                 MessageBox.Show("Ошибка перевода: " + ex.Message);
             }
+        }
+
+        private void LoadCardAndAccountFromDatabase()
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-BO24OOP;Initial Catalog=FintechBank;Integrated Security=True"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(
+                    "SELECT TOP 1 Cards.CardNumber, Accounts.Balance " +
+                    "FROM Cards " +
+                    "INNER JOIN Accounts ON Cards.AccountID = Accounts.AccountID " +
+                    "WHERE Accounts.UserID = @UserID", connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", _currentUserId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            _card = new Cards
+                            {
+                                CardNumber = reader["CardNumber"].ToString()
+                            };
+                            _account = new Accounts
+                            {
+                                Balance = (decimal)reader["Balance"]
+                            };
+                        }
+                    }
+                }
+            }
+        }
+
+        private string[] SplitCardNumberIntoParts(string cardNumber)
+        {
+            return new string[]
+            {
+                cardNumber.Substring(0, 4),
+                cardNumber.Substring(4, 4),
+                cardNumber.Substring(8, 4),
+                cardNumber.Substring(12, 4)
+            };
         }
     }
 }
