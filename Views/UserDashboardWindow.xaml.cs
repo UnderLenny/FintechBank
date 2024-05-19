@@ -37,7 +37,7 @@ namespace FintechBank.Views
 
             if (WalletButtonArrow.Visibility == Visibility.Visible)
             {
-                DepositsButtonArrow.Visibility = Visibility.Hidden;
+                PaymentsButtonArrow.Visibility = Visibility.Hidden;
                 HistoryButtonArrow.Visibility = Visibility.Hidden;
                 SettingsButtonArrow.Visibility = Visibility.Hidden;
             }
@@ -47,7 +47,7 @@ namespace FintechBank.Views
             }
 
             HistoryButton.Style = (Style)FindResource("menuButton");
-            DepositsButton.Style = (Style)FindResource("menuButton");
+            PaymentsButton.Style = (Style)FindResource("menuButton");
             SettingsButton.Style = (Style)FindResource("menuButton");
             MainFrame.Navigate(new WalletPage());
         }
@@ -59,7 +59,7 @@ namespace FintechBank.Views
 
             if (HistoryButtonArrow.Visibility == Visibility.Visible)
             {
-                DepositsButtonArrow.Visibility = Visibility.Hidden;
+                PaymentsButtonArrow.Visibility = Visibility.Hidden;
                 WalletButtonArrow.Visibility = Visibility.Hidden;
                 SettingsButtonArrow.Visibility = Visibility.Hidden;
             }
@@ -69,31 +69,31 @@ namespace FintechBank.Views
             }
 
             WalletButton.Style = (Style)FindResource("menuButton");
-            DepositsButton.Style = (Style)FindResource("menuButton");
+            PaymentsButton.Style = (Style)FindResource("menuButton");
             SettingsButton.Style = (Style)FindResource("menuButton");
             MainFrame.Navigate(new HistoryPage());
         }
 
-        private void DepositsButton_Click(object sender, RoutedEventArgs e)
+        private void PaymentsButton_Click(object sender, RoutedEventArgs e)
         {
 
-            DepositsButton.Style = (Style)FindResource("activeMenuButton");
-            DepositsButtonArrow.Visibility = Visibility.Visible;
+            PaymentsButton.Style = (Style)FindResource("activeMenuButton");
+            PaymentsButtonArrow.Visibility = Visibility.Visible;
 
-            if (DepositsButtonArrow.Visibility == Visibility.Visible)
+            if (PaymentsButtonArrow.Visibility == Visibility.Visible)
             {
                 WalletButtonArrow.Visibility = Visibility.Hidden;
                 HistoryButtonArrow.Visibility = Visibility.Hidden;
                 SettingsButtonArrow.Visibility = Visibility.Hidden;
             } else
             {
-                DepositsButtonArrow.Visibility = Visibility.Hidden;
+                PaymentsButtonArrow.Visibility = Visibility.Hidden;
             }
 
             HistoryButton.Style = (Style)FindResource("menuButton");
             WalletButton.Style = (Style)FindResource("menuButton");
             SettingsButton.Style = (Style)FindResource("menuButton");
-            MainFrame.Navigate(new DepositsPage());
+            MainFrame.Navigate(new PaymentsPage());
         }
 
 
@@ -105,7 +105,7 @@ namespace FintechBank.Views
 
             if (SettingsButtonArrow.Visibility == Visibility.Visible)
             {
-                DepositsButtonArrow.Visibility = Visibility.Hidden;
+                PaymentsButtonArrow.Visibility = Visibility.Hidden;
                 WalletButtonArrow.Visibility = Visibility.Hidden;
                 HistoryButtonArrow.Visibility = Visibility.Hidden;
             }
@@ -117,7 +117,7 @@ namespace FintechBank.Views
 
             HistoryButton.Style = (Style)FindResource("menuButton");
             WalletButton.Style = (Style)FindResource("menuButton");
-            DepositsButton.Style = (Style)FindResource("menuButton");
+            PaymentsButton.Style = (Style)FindResource("menuButton");
             MainFrame.Navigate(new SettingsPage());
         }
 

@@ -410,7 +410,7 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <fa:ImageAwesome Icon="FolderOutline" Style="{StaticResource buttonIcon}" />
-                            <TextBlock Text="Кошелек" FontWeight="Bold" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                            <TextBlock Text="Главная" FontWeight="Bold" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
                         </StackPanel>
                         <fa:ImageAwesome x:Name="WalletButtonArrow" Icon="AngleRight" HorizontalAlignment="Right" Style="{StaticResource buttonIconExpand}" />
                     </Grid>
@@ -420,19 +420,19 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <fa:ImageAwesome Icon="History" Style="{StaticResource buttonIcon}" />
-                            <TextBlock Text="История" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                            <TextBlock Text="Операции" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
                         </StackPanel>
                         <fa:ImageAwesome x:Name="HistoryButtonArrow" Icon="AngleRight" HorizontalAlignment="Right" Style="{StaticResource buttonIconExpand}" />
                     </Grid>
                 </Button>
 
-                <Button x:Name="DepositsButton" Style="{StaticResource menuButton}" Click="DepositsButton_Click" FontFamily="Cascadia Code">
+                <Button x:Name="PaymentsButton" Style="{StaticResource menuButton}" Click="PaymentsButton_Click" FontFamily="Cascadia Code">
                     <Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <fa:ImageAwesome Icon="Money" Style="{StaticResource buttonIcon}" />
-                            <TextBlock Text="Вклады" Style="{StaticResource buttonText}" />
+                            <TextBlock Text="Платежи" Style="{StaticResource buttonText}" />
                         </StackPanel>
-                        <fa:ImageAwesome x:Name="DepositsButtonArrow" Icon="AngleRight" HorizontalAlignment="Right" Style="{StaticResource buttonIconExpand}" />
+                        <fa:ImageAwesome x:Name="PaymentsButtonArrow" Icon="AngleRight" HorizontalAlignment="Right" Style="{StaticResource buttonIconExpand}" />
                     </Grid>
                 </Button>
 
@@ -440,7 +440,7 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <fa:ImageAwesome Icon="Sellsy" Style="{StaticResource buttonIcon}" />
-                            <TextBlock Text="Настройки" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                            <TextBlock Text="Личный кабинет" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
                         </StackPanel>
                         <fa:ImageAwesome x:Name="SettingsButtonArrow" Icon="AngleRight" HorizontalAlignment="Right" Style="{StaticResource buttonIconExpand}" />
                     </Grid>

@@ -4,15 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d5282cba7d524e90b924ab66d4db23d7" Name="Diagram1">
-        <EntityTypeShape EntityType="FintechBankModel.Accounts" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FintechBankModel.Cards" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FintechBankModel.Roles" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FintechBankModel.Transactions" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FintechBankModel.Users" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <AssociationConnector Association="FintechBankModel.FK__Accounts__UserID__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="FintechBankModel.FK__Cards__AccountID__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="FintechBankModel.FK__Transacti__Accou__49C3F6B7" ManuallyRouted="false" />
+      <Diagram DiagramId="c19f6821785f4d269591b8cea2e56811" Name="Diagram1">
+        <EntityTypeShape EntityType="FintechBankModel.Accounts" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Cards" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.CardStatuses" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Roles" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Transactions" Width="1.5" PointX="10.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.TransactionTypes" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.Users" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="FintechBankModel.FK__Accounts__UserID__0C85DE4D" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Cards__AccountID__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Transacti__Recei__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Transacti__Sende__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Cards__CardStatu__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Transacti__Trans__151B244E" ManuallyRouted="false" />
         <AssociationConnector Association="FintechBankModel.UserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

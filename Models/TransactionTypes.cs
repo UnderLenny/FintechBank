@@ -12,18 +12,18 @@ namespace FintechBank.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Transactions
+    public partial class TransactionTypes
     {
-        public int TransactionID { get; set; }
-        public Nullable<int> SenderAccountID { get; set; }
-        public Nullable<int> ReceiverAccountID { get; set; }
-        public decimal Amount { get; set; }
-        public Nullable<int> TransactionTypeID { get; set; }
-        public string Description { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TransactionTypes()
+        {
+            this.Transactions = new HashSet<Transactions>();
+        }
     
-        public virtual Accounts Accounts { get; set; }
-        public virtual Accounts Accounts1 { get; set; }
-        public virtual TransactionTypes TransactionTypes { get; set; }
+        public int TransactionTypeID { get; set; }
+        public string TransactionTypeName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transactions> Transactions { get; set; }
     }
 }

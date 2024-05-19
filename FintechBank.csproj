@@ -67,10 +67,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Models\Accounts.cs">
       <DependentUpon>FintechBankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cards.cs">
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CardStatuses.cs">
       <DependentUpon>FintechBankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Connection.cs" />
@@ -95,6 +99,9 @@
     <Compile Include="Models\Transactions.cs">
       <DependentUpon>FintechBankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TransactionTypes.cs">
+      <DependentUpon>FintechBankModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Users.cs">
       <DependentUpon>FintechBankModel.tt</DependentUpon>
     </Compile>
@@ -111,8 +118,8 @@
     <Compile Include="Views\UserDashboardWindow.xaml.cs">
       <DependentUpon>UserDashboardWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewsPages\DepositsPage.xaml.cs">
-      <DependentUpon>DepositsPage.xaml</DependentUpon>
+    <Compile Include="Views\ViewsPages\PaymentsPage.xaml.cs">
+      <DependentUpon>PaymentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewsPages\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
@@ -135,7 +142,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ViewsPages\DepositsPage.xaml">
+    <Page Include="Views\ViewsPages\PaymentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,5 +211,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

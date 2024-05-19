@@ -19,8 +19,10 @@ namespace FintechBank.Models
         public string CardNumber { get; set; }
         public string CardType { get; set; }
         public System.DateTime ExpirationDate { get; set; }
+        public Nullable<int> CardStatusID { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
     
         public virtual Accounts Accounts { get; set; }
+        public virtual CardStatuses CardStatuses { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace FintechBank.Models
         {
             this.Cards = new HashSet<Cards>();
             this.Transactions = new HashSet<Transactions>();
+            this.Transactions1 = new HashSet<Transactions>();
         }
     
         public int AccountID { get; set; }
@@ -32,5 +33,7 @@ namespace FintechBank.Models
         public virtual ICollection<Cards> Cards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transactions> Transactions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transactions> Transactions1 { get; set; }
     }
 }

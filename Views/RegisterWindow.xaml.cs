@@ -28,9 +28,13 @@ namespace FintechBank
             if (password == confirmPassword)
             {
                 string passwordHash = HashPassword(password);
-                if (Register(firstName, lastName, email, passwordHash))
+                int userID = Register(firstName, lastName, email, passwordHash);
+                if (userID != -1)
                 {
                     MessageBox.Show("Registration successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    int accountID = CreateAccount(userID); // сохраняем AccountID
+                    CreateCard(accountID); // передаем AccountID, а не userID
+                    AssignRole(userID);
                     var loginWindow = new LoginWindow();
                     loginWindow.Show();
                     this.Close();
@@ -60,7 +64,33 @@ namespace FintechBank
             }
         }
 
-        private bool Register(string firstName, string lastName, string email, string passwordHash)
+        private string GenerateAccountNumber()
+        {
+            Random random = new Random();
+            string accountNumber = "";
+            for (int i = 0; i < 10; i++)
+            {
+                int digit = random.Next(0, 10); // Генерация случайной цифры от 0 до 9
+                accountNumber += digit.ToString();
+            }
+            return accountNumber;
+        }
+
+        private string GenerateCardNumber()
+        {
+            Random random = new Random();
+            string cardNumber = "";
+            for (int i = 0; i < 16; i++)
+            {
+                int digit = random.Next(0, 10); // Генерация случайной цифры от 0 до 9
+                cardNumber += digit.ToString();
+            }
+            return cardNumber;
+        }
+
+
+
+        private int Register(string firstName, string lastName, string email, string passwordHash)
         {
             try
             {
@@ -74,25 +104,112 @@ namespace FintechBank
 
                 if (count > 0)
                 {
-                    return false; // Email уже используется
+                    return -1; // Email уже используется
                 }
 
                 // Вставка нового пользователя
-                string query = "INSERT INTO Users (FirstName, LastName, Email, PasswordHash) VALUES (@FirstName, @LastName, @Email, @PasswordHash);";
+                string query = "INSERT INTO Users (FirstName, LastName, Email, PasswordHash) OUTPUT INSERTED.UserID VALUES (@FirstName, @LastName, @Email, @PasswordHash);";
                 SqlCommand command = new SqlCommand(query, connection.getConnection());
                 command.Parameters.AddWithValue("@FirstName", firstName);
                 command.Parameters.AddWithValue("@LastName", lastName);
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@PasswordHash", passwordHash);
-                int result = command.ExecuteNonQuery();
+                int userID = (int)command.ExecuteScalar();
 
-                return result > 0;
+                return userID;
             }
             catch (Exception ex)
             {
                 // Логирование ошибок
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
+                return -1;
+            }
+            finally
+            {
+                connection.closeConnection();
+            }
+        }
+
+        private int CreateAccount(int userID)
+        {
+            try
+            {
+                connection.openConnection();
+
+                decimal initialBalance = 1000;
+                string accountNumber = GenerateAccountNumber(); // Функция для генерации уникального номера счета
+
+                string accountQuery = "INSERT INTO Accounts (UserID, AccountNumber, Balance) OUTPUT INSERTED.AccountID VALUES (@UserID, @AccountNumber, @Balance);";
+                SqlCommand accountCommand = new SqlCommand(accountQuery, connection.getConnection());
+                accountCommand.Parameters.AddWithValue("@UserID", userID); // ID пользователя, который только что зарегистрировался
+                accountCommand.Parameters.AddWithValue("@AccountNumber", accountNumber);
+                accountCommand.Parameters.AddWithValue("@Balance", initialBalance);
+                int accountID = (int)accountCommand.ExecuteScalar();
+
+                return accountID;
+            }
+            catch (Exception ex)
+            {
+                // Логирование ошибок
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1;
+            }
+            finally
+            {
+                connection.closeConnection();
+            }
+        }
+
+
+        private void CreateCard(int accountID) // Изменено с userID на accountID
+        {
+            try
+            {
+                connection.openConnection();
+
+                string cardNumber = GenerateCardNumber(); // Функция для генерации уникального номера карты
+                string cardType = "Debit";
+                DateTime expirationDate = DateTime.Now.AddYears(3); // Срок действия карты - 3 года
+                int cardStatusID = 1; // ID статуса "Active"
+
+                string cardQuery = "INSERT INTO Cards (AccountID, CardNumber, CardType, ExpirationDate, CardStatusID) VALUES (@AccountID, @CardNumber, @CardType, @ExpirationDate, @CardStatusID);";
+                SqlCommand cardCommand = new SqlCommand(cardQuery, connection.getConnection());
+                cardCommand.Parameters.AddWithValue("@AccountID", accountID); // Изменено с userID на accountID
+                cardCommand.Parameters.AddWithValue("@CardNumber", cardNumber);
+                cardCommand.Parameters.AddWithValue("@CardType", cardType);
+                cardCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate);
+                cardCommand.Parameters.AddWithValue("@CardStatusID", cardStatusID);
+                cardCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Логирование ошибок
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                connection.closeConnection();
+            }
+        }
+
+        private void AssignRole(int userID)
+        {
+            try
+            {
+                connection.openConnection();
+
+                int roleID = 2; // ID роли 'User'
+
+                string userRoleQuery = "INSERT INTO UserRoles (UserID, RoleID) VALUES (@UserID, @RoleID);";
+                SqlCommand userRoleCommand = new SqlCommand(userRoleQuery, connection.getConnection());
+                userRoleCommand.Parameters.AddWithValue("@UserID", userID);
+                userRoleCommand.Parameters.AddWithValue("@RoleID", roleID);
+                userRoleCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Логирование ошибок
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {

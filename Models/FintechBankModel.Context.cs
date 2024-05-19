@@ -13,10 +13,10 @@ namespace FintechBank.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FintechBankEntities1 : DbContext
+    public partial class FintechBankEntities2 : DbContext
     {
-        public FintechBankEntities1()
-            : base("name=FintechBankEntities1")
+        public FintechBankEntities2()
+            : base("name=FintechBankEntities2")
         {
         }
     
@@ -27,8 +27,10 @@ namespace FintechBank.Models
     
         public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<Cards> Cards { get; set; }
+        public virtual DbSet<CardStatuses> CardStatuses { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Transactions> Transactions { get; set; }
+        public virtual DbSet<TransactionTypes> TransactionTypes { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }
