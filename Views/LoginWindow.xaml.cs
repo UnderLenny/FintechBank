@@ -1,12 +1,12 @@
-﻿using System;
+﻿using FintechBank.Models;
+using FintechBank.Views;
+using System;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using FintechBank.Models;
-using FintechBank.Views;
 
 namespace FintechBank
 {
@@ -25,11 +25,34 @@ namespace FintechBank
             string password = PasswordBox.Password;
 
             int currentUserId;
-            if (Login(email, HashPassword(password), out currentUserId))
+            string userRole;
+
+            if (Login(email, HashPassword(password), out currentUserId, out userRole))
             {
                 MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                var mainAppWindow = new UserDashboardWindow(currentUserId); 
-                mainAppWindow.Show();
+
+                try
+                {
+                    if (userRole == "Admin")
+                    {
+                        var adminDashboardWindow = new AdminDashboardWindow(currentUserId);
+                        adminDashboardWindow.Show();
+                    }
+                    else if (userRole == "User")
+                    {
+                        var userDashboardWindow = new UserDashboardWindow(currentUserId);
+                        userDashboardWindow.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unknown user role.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to open the dashboard window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
                 this.Close();
             }
             else
@@ -38,26 +61,34 @@ namespace FintechBank
             }
         }
 
-        private bool Login(string email, string passwordHash, out int currentUserId)
+        private bool Login(string email, string passwordHash, out int currentUserId, out string userRole)
         {
-            currentUserId = -1; 
+            currentUserId = -1;
+            userRole = "";
 
             try
             {
                 connection.openConnection();
 
-                string query = "SELECT UserID FROM Users WHERE Email = @Email AND PasswordHash = @PasswordHash;";
+                string query = @"SELECT u.UserID, r.RoleName
+                                 FROM Users u
+                                 JOIN UserRoles ur ON u.UserID = ur.UserID
+                                 JOIN Roles r ON ur.RoleID = r.RoleID
+                                 WHERE u.Email = @Email AND u.PasswordHash = @PasswordHash;";
                 SqlCommand command = new SqlCommand(query, connection.getConnection());
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@PasswordHash", passwordHash);
-                object result = command.ExecuteScalar();
+                SqlDataReader reader = command.ExecuteReader();
 
-                if (result != null && int.TryParse(result.ToString(), out currentUserId))
+                if (reader.Read())
                 {
+                    currentUserId = reader.GetInt32(0);
+                    userRole = reader.GetString(1);
                     return true;
                 }
                 else
                 {
+                    MessageBox.Show("No matching user found.", "Debug", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;
                 }
             }
@@ -71,6 +102,7 @@ namespace FintechBank
                 connection.closeConnection();
             }
         }
+
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

@@ -1,38 +1,35 @@
 ﻿<Window x:Class="FintechBank.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FintechBank"
-        mc:Ignorable="d"
-        Title="RegisterWindow" Height="600" Width="500"
+        Title="Register" Height="650" Width="500"
         WindowStartupLocation="CenterScreen"
         Background="#FFFFFF" FontFamily="Segoe UI">
-
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="444*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Header Section -->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,10">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,10" Grid.Column="1" Width="460">
             <Image Source="../Resources/logo.png" Width="158" Height="126"/>
-            <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#FF3F4949" FontFamily="Cascadia Code"><Run Language="ru-ru" Text="Добро пожаловать в "/><Run Text="FintechBank"/></TextBlock>
-            <TextBlock Text="Создайте аккаунт, чтобы начать" FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Foreground="#FF3F4949" FontFamily="Copperplate Gothic Bold"/>
+            <TextBlock FontSize="24" FontWeight="Bold" Foreground="#FF3F4949" FontFamily="Cascadia Code" Width="427"><Run Text="Регистрация в "/><Run Text="FintechBank"/></TextBlock>
         </StackPanel>
 
         <!-- Registration Form Section -->
-        <StackPanel Grid.Row="1" Margin="74,0,65,20">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel Margin="0,10,10,0">
-                    <TextBlock Text="Имя" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949" />
-                    <TextBox x:Name="FirstNameTextBox" Height="30" FontSize="16" Width="175"/>
-                </StackPanel>
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock Text="Фамилия" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
-                    <TextBox x:Name="LastNameTextBox"  Height="30" FontSize="16" Width="175"/>
-                </StackPanel>
+        <StackPanel Margin="3,205,2,20" Grid.Column="1" Grid.RowSpan="2">
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="Имя" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
+                <TextBox x:Name="FirstNameTextBox" Height="30" FontSize="16"/>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="Фамилия" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
+                <TextBox x:Name="LastNameTextBox" Height="30" FontSize="16"/>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
                 <TextBlock Text="Email" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
@@ -44,12 +41,11 @@
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
                 <TextBlock Text="Подтвердите пароль" FontSize="12" FontWeight="Bold" Foreground="#FF3F4949"/>
-                <PasswordBox x:Name="ConfirmPasswordBox" Height="30" FontSize="16" />
+                <PasswordBox x:Name="ConfirmPasswordBox" Height="30" FontSize="16"/>
             </StackPanel>
 
-            <Button Content="Создать аккаунт" Height="40" Background="#FF3F4949" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="RegisterButton_Click"/>
-
-            <TextBlock Text="Уже есть аккаунт? Водите!"  MouseDown="LoginText_MouseDown" FontSize="14" FontWeight="Bold" Foreground="#FF3F4949"  HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" />
+            <Button Content="Зарегистрироваться" Height="40" Background="#FF3F4949" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" Click="RegisterButton_Click" FontFamily="Cascadia Code"/>
+            <TextBlock Text="Уже есть аккаунт? Войдите!" FontSize="14" FontWeight="Bold" Foreground="#FF3F4949" HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" MouseDown="LoginText_MouseDown" FontFamily="Cascadia Code"/>
         </StackPanel>
     </Grid>
 </Window>

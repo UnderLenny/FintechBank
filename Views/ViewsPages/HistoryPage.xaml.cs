@@ -23,7 +23,7 @@ namespace FintechBank.Views.ViewsPages
         {
             try
             {
-                using (var context = new FintechBankEntities2())
+                using (var context = new FintechBankEntities())
                 {
                     var transactions = await context.Transactions
                         .Include(t => t.Accounts) // Включение аккаунта отправителя

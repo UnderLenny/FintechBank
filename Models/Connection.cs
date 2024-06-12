@@ -9,7 +9,7 @@ namespace FintechBank.Models
 {
     class Connection
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BO24OOP; Initial Catalog=FintechBank; Integrated Security=True");
+        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-6N0RNNN\SQLSERVERMS; Initial Catalog=FintechBank; Integrated Security=True");
         
         public void openConnection()
         {

@@ -4,20 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c19f6821785f4d269591b8cea2e56811" Name="Diagram1">
+      <Diagram DiagramId="33c6b194ea474def8d8d8748a764bf89" Name="Diagram1">
         <EntityTypeShape EntityType="FintechBankModel.Accounts" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FintechBankModel.Cards" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FintechBankModel.CardStatuses" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FintechBankModel.Roles" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FintechBankModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FintechBankModel.Transactions" Width="1.5" PointX="10.5" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FintechBankModel.TransactionTypes" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FintechBankModel.Users" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <AssociationConnector Association="FintechBankModel.FK__Accounts__UserID__0C85DE4D" ManuallyRouted="false" />
-        <AssociationConnector Association="FintechBankModel.FK__Cards__AccountID__1CBC4616" ManuallyRouted="false" />
-        <AssociationConnector Association="FintechBankModel.FK__Transacti__Recei__14270015" ManuallyRouted="false" />
-        <AssociationConnector Association="FintechBankModel.FK__Transacti__Sende__1332DBDC" ManuallyRouted="false" />
-        <AssociationConnector Association="FintechBankModel.FK__Cards__CardStatu__1DB06A4F" ManuallyRouted="false" />
-        <AssociationConnector Association="FintechBankModel.FK__Transacti__Trans__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Accounts__UserID__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Cards__AccountID__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Transacti__Recei__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Transacti__Sende__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Cards__CardStatu__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="FintechBankModel.FK__Transacti__Trans__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="FintechBankModel.UserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

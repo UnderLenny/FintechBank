@@ -14,21 +14,29 @@ namespace FintechBank.Views.ViewsPages
         private readonly int _currentUserId;
         private Cards _card;
         private Accounts _account;
+        private readonly Connection _dbConnection;
 
         public PaymentsPage(int userId)
         {
             InitializeComponent();
             _transactionsController = new TransactionsController();
             _currentUserId = userId;
+            _dbConnection = new Connection();
             LoadCardAndAccountFromDatabase();
-            var cardNumberParts = SplitCardNumberIntoParts(_card.CardNumber);
+            var cardNumberParts = SplitCardNumberIntoParts(_card?.CardNumber);
+
+            if (_card == null || _account == null)
+            {
+                MessageBox.Show("Не удалось загрузить данные карты или счета.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             DataContext = new
             {
-                NumberPart1 = cardNumberParts[0],
-                NumberPart2 = cardNumberParts[1],
-                NumberPart3 = cardNumberParts[2],
-                NumberPart4 = cardNumberParts[3],
+                NumberPart1 = cardNumberParts?[0],
+                NumberPart2 = cardNumberParts?[1],
+                NumberPart3 = cardNumberParts?[2],
+                NumberPart4 = cardNumberParts?[3],
                 Balance = _account.Balance
             };
         }
@@ -45,7 +53,7 @@ namespace FintechBank.Views.ViewsPages
 
             try
             {
-                using (var context = new FintechBankEntities2())
+                using (var context = new FintechBankEntities())
                 {
                     var receiverAccount = context.Cards
                         .Where(c => c.CardNumber == receiverCardNumber)
@@ -88,15 +96,14 @@ namespace FintechBank.Views.ViewsPages
 
         private void LoadCardAndAccountFromDatabase()
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-BO24OOP;Initial Catalog=FintechBank;Integrated Security=True"))
+            try
             {
-                connection.Open();
-
+                _dbConnection.openConnection();
                 using (SqlCommand command = new SqlCommand(
                     "SELECT TOP 1 Cards.CardNumber, Accounts.Balance " +
                     "FROM Cards " +
                     "INNER JOIN Accounts ON Cards.AccountID = Accounts.AccountID " +
-                    "WHERE Accounts.UserID = @UserID", connection))
+                    "WHERE Accounts.UserID = @UserID", _dbConnection.getConnection()))
                 {
                     command.Parameters.AddWithValue("@UserID", _currentUserId);
 
@@ -115,11 +122,23 @@ namespace FintechBank.Views.ViewsPages
                         }
                     }
                 }
+                _dbConnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при загрузке данных из базы данных: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                _dbConnection.closeConnection();
             }
         }
 
         private string[] SplitCardNumberIntoParts(string cardNumber)
         {
+            if (string.IsNullOrEmpty(cardNumber) || cardNumber.Length != 16)
+            {
+                MessageBox.Show("Некорректный номер карты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+
             return new string[]
             {
                 cardNumber.Substring(0, 4),

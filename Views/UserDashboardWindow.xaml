@@ -435,16 +435,6 @@
                     </Grid>
                 </Button>
 
-                <Button x:Name="SettingsButton" Style="{StaticResource menuButton}" Click="SettingsButton_Click">
-                    <Grid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <fa:ImageAwesome Icon="Sellsy" Style="{StaticResource buttonIcon}" />
-                            <TextBlock Text="Личный кабинет" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                        </StackPanel>
-                        <fa:ImageAwesome x:Name="SettingsButtonArrow" Icon="AngleRight" HorizontalAlignment="Right" Style="{StaticResource buttonIconExpand}" />
-                    </Grid>
-                </Button>
-
                 <Separator Background="#e0e0e0" Opacity="0.5" Margin="50 15 60 15"/>
 
                 <Button Style="{StaticResource menuButton}" Click="LogoutButton_Click">

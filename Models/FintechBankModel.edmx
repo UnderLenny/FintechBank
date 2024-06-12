@@ -41,6 +41,16 @@
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Transactions">
           <Key>
             <PropertyRef Name="TransactionID" />
@@ -79,7 +89,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Accounts__UserID__0C85DE4D">
+        <Association Name="FK__Accounts__UserID__44FF419A">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cards__AccountID__1CBC4616">
+        <Association Name="FK__Cards__AccountID__5535A963">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
           <End Role="Cards" Type="Self.Cards" Multiplicity="*" />
           <ReferentialConstraint>
@@ -103,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cards__CardStatu__1DB06A4F">
+        <Association Name="FK__Cards__CardStatu__5629CD9C">
           <End Role="CardStatuses" Type="Self.CardStatuses" Multiplicity="0..1" />
           <End Role="Cards" Type="Self.Cards" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +125,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Recei__14270015">
+        <Association Name="FK__Transacti__Recei__4CA06362">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -127,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Sende__1332DBDC">
+        <Association Name="FK__Transacti__Sende__4BAC3F29">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +149,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Trans__151B244E">
+        <Association Name="FK__Transacti__Trans__4D94879B">
           <End Role="TransactionTypes" Type="Self.TransactionTypes" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +161,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoles__RoleI__06CD04F7">
+        <Association Name="FK__UserRoles__RoleI__3F466844">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +173,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoles__UserI__05D8E0BE">
+        <Association Name="FK__UserRoles__UserI__3E52440B">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,39 +190,40 @@
           <EntitySet Name="Cards" EntityType="Self.Cards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CardStatuses" EntityType="Self.CardStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionTypes" EntityType="Self.TransactionTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Accounts__UserID__0C85DE4D" Association="Self.FK__Accounts__UserID__0C85DE4D">
+          <AssociationSet Name="FK__Accounts__UserID__44FF419A" Association="Self.FK__Accounts__UserID__44FF419A">
             <End Role="Users" EntitySet="Users" />
             <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cards__AccountID__1CBC4616" Association="Self.FK__Cards__AccountID__1CBC4616">
+          <AssociationSet Name="FK__Cards__AccountID__5535A963" Association="Self.FK__Cards__AccountID__5535A963">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Cards" EntitySet="Cards" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cards__CardStatu__1DB06A4F" Association="Self.FK__Cards__CardStatu__1DB06A4F">
+          <AssociationSet Name="FK__Cards__CardStatu__5629CD9C" Association="Self.FK__Cards__CardStatu__5629CD9C">
             <End Role="CardStatuses" EntitySet="CardStatuses" />
             <End Role="Cards" EntitySet="Cards" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Recei__14270015" Association="Self.FK__Transacti__Recei__14270015">
+          <AssociationSet Name="FK__Transacti__Recei__4CA06362" Association="Self.FK__Transacti__Recei__4CA06362">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Sende__1332DBDC" Association="Self.FK__Transacti__Sende__1332DBDC">
+          <AssociationSet Name="FK__Transacti__Sende__4BAC3F29" Association="Self.FK__Transacti__Sende__4BAC3F29">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Trans__151B244E" Association="Self.FK__Transacti__Trans__151B244E">
+          <AssociationSet Name="FK__Transacti__Trans__4D94879B" Association="Self.FK__Transacti__Trans__4D94879B">
             <End Role="TransactionTypes" EntitySet="TransactionTypes" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoles__RoleI__06CD04F7" Association="Self.FK__UserRoles__RoleI__06CD04F7">
+          <AssociationSet Name="FK__UserRoles__RoleI__3F466844" Association="Self.FK__UserRoles__RoleI__3F466844">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="UserRoles" EntitySet="UserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoles__UserI__05D8E0BE" Association="Self.FK__UserRoles__UserI__05D8E0BE">
+          <AssociationSet Name="FK__UserRoles__UserI__3E52440B" Association="Self.FK__UserRoles__UserI__3E52440B">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRoles" EntitySet="UserRoles" />
           </AssociationSet>
@@ -231,10 +242,10 @@
           <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Accounts__UserID__0C85DE4D" FromRole="Accounts" ToRole="Users" />
-          <NavigationProperty Name="Cards" Relationship="Self.FK__Cards__AccountID__1CBC4616" FromRole="Accounts" ToRole="Cards" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Recei__14270015" FromRole="Accounts" ToRole="Transactions" />
-          <NavigationProperty Name="Transactions1" Relationship="Self.FK__Transacti__Sende__1332DBDC" FromRole="Accounts" ToRole="Transactions" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Accounts__UserID__44FF419A" FromRole="Accounts" ToRole="Users" />
+          <NavigationProperty Name="Cards" Relationship="Self.FK__Cards__AccountID__5535A963" FromRole="Accounts" ToRole="Cards" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Recei__4CA06362" FromRole="Accounts" ToRole="Transactions" />
+          <NavigationProperty Name="Transactions1" Relationship="Self.FK__Transacti__Sende__4BAC3F29" FromRole="Accounts" ToRole="Transactions" />
         </EntityType>
         <EntityType Name="Cards">
           <Key>
@@ -247,8 +258,8 @@
           <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CardStatusID" Type="Int32" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK__Cards__AccountID__1CBC4616" FromRole="Cards" ToRole="Accounts" />
-          <NavigationProperty Name="CardStatuses" Relationship="Self.FK__Cards__CardStatu__1DB06A4F" FromRole="Cards" ToRole="CardStatuses" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Cards__AccountID__5535A963" FromRole="Cards" ToRole="Accounts" />
+          <NavigationProperty Name="CardStatuses" Relationship="Self.FK__Cards__CardStatu__5629CD9C" FromRole="Cards" ToRole="CardStatuses" />
         </EntityType>
         <EntityType Name="CardStatuses">
           <Key>
@@ -256,7 +267,7 @@
           </Key>
           <Property Name="CardStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CardStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Cards" Relationship="Self.FK__Cards__CardStatu__1DB06A4F" FromRole="CardStatuses" ToRole="Cards" />
+          <NavigationProperty Name="Cards" Relationship="Self.FK__Cards__CardStatu__5629CD9C" FromRole="CardStatuses" ToRole="Cards" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -265,6 +276,16 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.UserRoles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Transactions">
           <Key>
@@ -277,9 +298,9 @@
           <Property Name="TransactionTypeID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK__Transacti__Recei__14270015" FromRole="Transactions" ToRole="Accounts" />
-          <NavigationProperty Name="Accounts1" Relationship="Self.FK__Transacti__Sende__1332DBDC" FromRole="Transactions" ToRole="Accounts" />
-          <NavigationProperty Name="TransactionTypes" Relationship="Self.FK__Transacti__Trans__151B244E" FromRole="Transactions" ToRole="TransactionTypes" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Transacti__Recei__4CA06362" FromRole="Transactions" ToRole="Accounts" />
+          <NavigationProperty Name="Accounts1" Relationship="Self.FK__Transacti__Sende__4BAC3F29" FromRole="Transactions" ToRole="Accounts" />
+          <NavigationProperty Name="TransactionTypes" Relationship="Self.FK__Transacti__Trans__4D94879B" FromRole="Transactions" ToRole="TransactionTypes" />
         </EntityType>
         <EntityType Name="TransactionTypes">
           <Key>
@@ -287,7 +308,7 @@
           </Key>
           <Property Name="TransactionTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TransactionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Trans__151B244E" FromRole="TransactionTypes" ToRole="Transactions" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Trans__4D94879B" FromRole="TransactionTypes" ToRole="Transactions" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -299,10 +320,10 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK__Accounts__UserID__0C85DE4D" FromRole="Users" ToRole="Accounts" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Accounts__UserID__44FF419A" FromRole="Users" ToRole="Accounts" />
           <NavigationProperty Name="Roles" Relationship="Self.UserRoles" FromRole="Users" ToRole="Roles" />
         </EntityType>
-        <Association Name="FK__Accounts__UserID__0C85DE4D">
+        <Association Name="FK__Accounts__UserID__44FF419A">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -314,7 +335,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cards__AccountID__1CBC4616">
+        <Association Name="FK__Cards__AccountID__5535A963">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
           <End Role="Cards" Type="Self.Cards" Multiplicity="*" />
           <ReferentialConstraint>
@@ -326,7 +347,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Recei__14270015">
+        <Association Name="FK__Transacti__Recei__4CA06362">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -338,7 +359,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Sende__1332DBDC">
+        <Association Name="FK__Transacti__Sende__4BAC3F29">
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -350,7 +371,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cards__CardStatu__1DB06A4F">
+        <Association Name="FK__Cards__CardStatu__5629CD9C">
           <End Role="CardStatuses" Type="Self.CardStatuses" Multiplicity="0..1" />
           <End Role="Cards" Type="Self.Cards" Multiplicity="*" />
           <ReferentialConstraint>
@@ -362,7 +383,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Trans__151B244E">
+        <Association Name="FK__Transacti__Trans__4D94879B">
           <End Role="TransactionTypes" Type="Self.TransactionTypes" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -378,35 +399,36 @@
           <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="FintechBankEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FintechBankEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" />
           <EntitySet Name="Cards" EntityType="Self.Cards" />
           <EntitySet Name="CardStatuses" EntityType="Self.CardStatuses" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" />
           <EntitySet Name="TransactionTypes" EntityType="Self.TransactionTypes" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK__Accounts__UserID__0C85DE4D" Association="Self.FK__Accounts__UserID__0C85DE4D">
+          <AssociationSet Name="FK__Accounts__UserID__44FF419A" Association="Self.FK__Accounts__UserID__44FF419A">
             <End Role="Users" EntitySet="Users" />
             <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cards__AccountID__1CBC4616" Association="Self.FK__Cards__AccountID__1CBC4616">
+          <AssociationSet Name="FK__Cards__AccountID__5535A963" Association="Self.FK__Cards__AccountID__5535A963">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Cards" EntitySet="Cards" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Recei__14270015" Association="Self.FK__Transacti__Recei__14270015">
+          <AssociationSet Name="FK__Transacti__Recei__4CA06362" Association="Self.FK__Transacti__Recei__4CA06362">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Sende__1332DBDC" Association="Self.FK__Transacti__Sende__1332DBDC">
+          <AssociationSet Name="FK__Transacti__Sende__4BAC3F29" Association="Self.FK__Transacti__Sende__4BAC3F29">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cards__CardStatu__1DB06A4F" Association="Self.FK__Cards__CardStatu__1DB06A4F">
+          <AssociationSet Name="FK__Cards__CardStatu__5629CD9C" Association="Self.FK__Cards__CardStatu__5629CD9C">
             <End Role="CardStatuses" EntitySet="CardStatuses" />
             <End Role="Cards" EntitySet="Cards" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Trans__151B244E" Association="Self.FK__Transacti__Trans__151B244E">
+          <AssociationSet Name="FK__Transacti__Trans__4D94879B" Association="Self.FK__Transacti__Trans__4D94879B">
             <End Role="TransactionTypes" EntitySet="TransactionTypes" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
@@ -420,7 +442,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище FintechBankModelContainer" CdmEntityContainer="FintechBankEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FintechBankModelContainer" CdmEntityContainer="FintechBankEntities">
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="FintechBankModel.Accounts">
               <MappingFragment StoreEntitySet="Accounts">
@@ -458,6 +480,17 @@
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FintechBankModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

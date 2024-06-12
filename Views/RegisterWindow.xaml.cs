@@ -32,8 +32,8 @@ namespace FintechBank
                 if (userID != -1)
                 {
                     MessageBox.Show("Registration successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    int accountID = CreateAccount(userID); 
-                    CreateCard(accountID); 
+                    int accountID = CreateAccount(userID);
+                    CreateCard(accountID);
                     AssignRole(userID);
                     var loginWindow = new LoginWindow();
                     loginWindow.Show();
@@ -70,7 +70,7 @@ namespace FintechBank
             string accountNumber = "";
             for (int i = 0; i < 10; i++)
             {
-                int digit = random.Next(0, 10); 
+                int digit = random.Next(0, 10);
                 accountNumber += digit.ToString();
             }
             return accountNumber;
@@ -88,15 +88,13 @@ namespace FintechBank
             return cardNumber.ToString();
         }
 
-
-
         private int Register(string firstName, string lastName, string email, string passwordHash)
         {
             try
             {
                 connection.openConnection();
 
-                // Проверка, существует ли уже пользователь с таким email
+                // Check if the email already exists
                 string checkQuery = "SELECT COUNT(*) FROM Users WHERE Email = @Email;";
                 SqlCommand checkCommand = new SqlCommand(checkQuery, connection.getConnection());
                 checkCommand.Parameters.AddWithValue("@Email", email);
@@ -104,9 +102,10 @@ namespace FintechBank
 
                 if (count > 0)
                 {
-                    return -1; 
+                    return -1;
                 }
 
+                // Insert new user and get UserID
                 string query = "INSERT INTO Users (FirstName, LastName, Email, PasswordHash) OUTPUT INSERTED.UserID VALUES (@FirstName, @LastName, @Email, @PasswordHash);";
                 SqlCommand command = new SqlCommand(query, connection.getConnection());
                 command.Parameters.AddWithValue("@FirstName", firstName);
@@ -119,7 +118,7 @@ namespace FintechBank
             }
             catch (Exception ex)
             {
-                // Логирование ошибок
+                // Log errors
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return -1;
             }
@@ -136,11 +135,11 @@ namespace FintechBank
                 connection.openConnection();
 
                 decimal initialBalance = 1000;
-                string accountNumber = GenerateAccountNumber(); 
+                string accountNumber = GenerateAccountNumber();
 
                 string accountQuery = "INSERT INTO Accounts (UserID, AccountNumber, Balance) OUTPUT INSERTED.AccountID VALUES (@UserID, @AccountNumber, @Balance);";
                 SqlCommand accountCommand = new SqlCommand(accountQuery, connection.getConnection());
-                accountCommand.Parameters.AddWithValue("@UserID", userID); 
+                accountCommand.Parameters.AddWithValue("@UserID", userID);
                 accountCommand.Parameters.AddWithValue("@AccountNumber", accountNumber);
                 accountCommand.Parameters.AddWithValue("@Balance", initialBalance);
                 int accountID = (int)accountCommand.ExecuteScalar();
@@ -149,7 +148,7 @@ namespace FintechBank
             }
             catch (Exception ex)
             {
-                // Логирование ошибок
+                // Log errors
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return -1;
             }
@@ -159,21 +158,20 @@ namespace FintechBank
             }
         }
 
-
-        private void CreateCard(int accountID) 
+        private void CreateCard(int accountID)
         {
             try
             {
                 connection.openConnection();
 
-                string cardNumber = GenerateCardNumber(); 
+                string cardNumber = GenerateCardNumber();
                 string cardType = "Debit";
-                DateTime expirationDate = DateTime.Now.AddYears(3); 
-                int cardStatusID = 1; 
+                DateTime expirationDate = DateTime.Now.AddYears(3);
+                int cardStatusID = 1;
 
                 string cardQuery = "INSERT INTO Cards (AccountID, CardNumber, CardType, ExpirationDate, CardStatusID) VALUES (@AccountID, @CardNumber, @CardType, @ExpirationDate, @CardStatusID);";
                 SqlCommand cardCommand = new SqlCommand(cardQuery, connection.getConnection());
-                cardCommand.Parameters.AddWithValue("@AccountID", accountID); 
+                cardCommand.Parameters.AddWithValue("@AccountID", accountID);
                 cardCommand.Parameters.AddWithValue("@CardNumber", cardNumber);
                 cardCommand.Parameters.AddWithValue("@CardType", cardType);
                 cardCommand.Parameters.AddWithValue("@ExpirationDate", expirationDate);
@@ -182,7 +180,7 @@ namespace FintechBank
             }
             catch (Exception ex)
             {
-                // Логирование ошибок
+                // Log errors
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
@@ -197,7 +195,7 @@ namespace FintechBank
             {
                 connection.openConnection();
 
-                int roleID = 2; 
+                int roleID = 2; // Assuming roleID 2 corresponds to the "User" role
 
                 string userRoleQuery = "INSERT INTO UserRoles (UserID, RoleID) VALUES (@UserID, @RoleID);";
                 SqlCommand userRoleCommand = new SqlCommand(userRoleQuery, connection.getConnection());
@@ -207,7 +205,7 @@ namespace FintechBank
             }
             catch (Exception ex)
             {
-                // Логирование ошибок
+                // Log errors
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally

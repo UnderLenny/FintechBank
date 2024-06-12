@@ -1,37 +1,21 @@
-﻿using FintechBank.Views.ViewsPages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using FintechBank.Views.ViewsPages;
 
 namespace FintechBank.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для UserDashboardWindow.xaml
-    /// </summary>
     public partial class UserDashboardWindow : Window
     {
         private int _currentUserId;
+
         public UserDashboardWindow(int currentUserId)
         {
             InitializeComponent();
+            MessageBox.Show($"UserDashboardWindow initialized with UserID: {currentUserId}", "Debug", MessageBoxButton.OK, MessageBoxImage.Information);
             MainFrame.Navigate(new WalletPage());
             _currentUserId = currentUserId;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void WalletButton_Click(object sender, RoutedEventArgs e)
         {
             WalletButton.Style = (Style)FindResource("activeMenuButton");
@@ -41,7 +25,6 @@ namespace FintechBank.Views
             {
                 PaymentsButtonArrow.Visibility = Visibility.Hidden;
                 HistoryButtonArrow.Visibility = Visibility.Hidden;
-                SettingsButtonArrow.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -50,7 +33,6 @@ namespace FintechBank.Views
 
             HistoryButton.Style = (Style)FindResource("menuButton");
             PaymentsButton.Style = (Style)FindResource("menuButton");
-            SettingsButton.Style = (Style)FindResource("menuButton");
             MainFrame.Navigate(new WalletPage());
         }
 
@@ -63,7 +45,6 @@ namespace FintechBank.Views
             {
                 PaymentsButtonArrow.Visibility = Visibility.Hidden;
                 WalletButtonArrow.Visibility = Visibility.Hidden;
-                SettingsButtonArrow.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -72,56 +53,34 @@ namespace FintechBank.Views
 
             WalletButton.Style = (Style)FindResource("menuButton");
             PaymentsButton.Style = (Style)FindResource("menuButton");
-            SettingsButton.Style = (Style)FindResource("menuButton");
             MainFrame.Navigate(new HistoryPage(_currentUserId));
         }
 
         private void PaymentsButton_Click(object sender, RoutedEventArgs e)
         {
-
-            PaymentsButton.Style = (Style)FindResource("activeMenuButton");
-            PaymentsButtonArrow.Visibility = Visibility.Visible;
-
-            if (PaymentsButtonArrow.Visibility == Visibility.Visible)
+            try
             {
-                WalletButtonArrow.Visibility = Visibility.Hidden;
-                HistoryButtonArrow.Visibility = Visibility.Hidden;
-                SettingsButtonArrow.Visibility = Visibility.Hidden;
+                PaymentsButton.Style = (Style)FindResource("activeMenuButton");
+                PaymentsButtonArrow.Visibility = Visibility.Visible;
+
+                if (PaymentsButtonArrow.Visibility == Visibility.Visible)
+                {
+                    WalletButtonArrow.Visibility = Visibility.Hidden;
+                    HistoryButtonArrow.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    PaymentsButtonArrow.Visibility = Visibility.Hidden;
+                }
+
+                HistoryButton.Style = (Style)FindResource("menuButton");
+                WalletButton.Style = (Style)FindResource("menuButton");
+                MainFrame.Navigate(new PaymentsPage(_currentUserId));
             }
-            else
+            catch (Exception ex)
             {
-                PaymentsButtonArrow.Visibility = Visibility.Hidden;
+                MessageBox.Show($"Error navigating to PaymentsPage: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            HistoryButton.Style = (Style)FindResource("menuButton");
-            WalletButton.Style = (Style)FindResource("menuButton");
-            SettingsButton.Style = (Style)FindResource("menuButton");
-            MainFrame.Navigate(new PaymentsPage(_currentUserId));
-        }
-
-
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsButton.Style = (Style)FindResource("activeMenuButton");
-            SettingsButtonArrow.Visibility = Visibility.Visible;
-
-
-            if (SettingsButtonArrow.Visibility == Visibility.Visible)
-            {
-                PaymentsButtonArrow.Visibility = Visibility.Hidden;
-                WalletButtonArrow.Visibility = Visibility.Hidden;
-                HistoryButtonArrow.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                SettingsButton.Visibility = Visibility.Hidden;
-
-            }
-
-            HistoryButton.Style = (Style)FindResource("menuButton");
-            WalletButton.Style = (Style)FindResource("menuButton");
-            PaymentsButton.Style = (Style)FindResource("menuButton");
-            MainFrame.Navigate(new SettingsPage());
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

@@ -7,11 +7,11 @@ namespace FintechBank.Controllers
 {
     public class TransactionsController
     {
-        private readonly FintechBankEntities2 _context;
+        private readonly FintechBankEntities _context;
 
         public TransactionsController()
         {
-            _context = new FintechBankEntities2();
+            _context = new FintechBankEntities();
         }
 
         public async Task<bool> TransferAsync(int senderAccountId, int receiverAccountId, decimal amount, string description)
